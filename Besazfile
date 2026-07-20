@@ -1,0 +1,11 @@
+[tasks.build]
+desc = "Build Besaz as a production release"
+run = ["cargo build --release", "echo 'build finished'"]
+
+[tasks.test]
+desc = "Run Bezaz's tests"
+run = "cargo test"
+
+[tasks.clean]
+desc = "Clean the project"
+run = "cargo clean"
