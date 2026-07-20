@@ -9,3 +9,9 @@ run = "cargo test"
 [tasks.clean]
 desc = "Clean the project"
 run = "cargo clean"
+
+[tasks.release]
+depends = ["test", "build"]
+desc = "Release Besaz"
+
+run = "echo 'not implemented'"

@@ -9,6 +9,7 @@ pub struct Config {
 
 #[derive(Debug, Deserialize)]
 pub struct Task {
+    pub depends: Option<Vec<String>>,
     pub desc: Option<String>,
     pub run: CommandList,
 }

@@ -1,4 +1,5 @@
 mod config;
+mod executor;
 mod runner;
 
 use anyhow::Result;
@@ -13,25 +14,27 @@ fn main() -> Result<()> {
     let Some(task_name) = args.get(1) else {
         println!("{}", "Available tasks:".bold());
 
-        for (name, task) in &config.tasks {
+        let mut tasks: Vec<_> = config.tasks.iter().collect();
+        tasks.sort_by_key(|(name, _)| *name);
+
+        for (name, task) in tasks {
             match &task.desc {
-                Some(desc) => println!("  {} - {}", name.green(), desc),
-                None => println!("  {}", name.green()),
+                Some(desc) => {
+                    println!("  {:<15} {}", name.green(), desc);
+                }
+
+                None => {
+                    println!("  {}", name.green());
+                }
             }
         }
 
         return Ok(());
     };
 
-    let task = config.tasks.get(task_name).ok_or_else(|| {
-        anyhow::anyhow!(
-            "Task '{}' does not exist.\n\
-                 Run `besaz` to see available tasks.",
-            task_name
-        )
-    })?;
+    let mut executor = executor::Executor::new(&config);
 
-    runner::run(task.run.commands())?;
+    executor.execute(task_name)?;
 
     Ok(())
 }
