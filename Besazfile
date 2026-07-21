@@ -15,3 +15,12 @@ depends = ["test", "build"]
 desc = "Release Besaz"
 
 run = "echo 'not implemented'"
+
+[tasks.test_env]
+depends = ["build"]
+desc = "Test if environment variables work"
+env = {
+    MESSAGE = "Hello from Besaz!"
+}
+
+run = "echo $MESSAGE"

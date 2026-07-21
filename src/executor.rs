@@ -55,7 +55,7 @@ impl<'a> Executor<'a> {
     fn run_task(&self, name: &str, task: &Task) -> Result<()> {
         println!("\n▶ {}", name);
 
-        runner::run(task.run.commands())?;
+        runner::run(task.run.commands(), task.env.as_ref())?;
 
         Ok(())
     }

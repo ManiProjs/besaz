@@ -12,6 +12,7 @@ pub struct Task {
     pub depends: Option<Vec<String>>,
     pub desc: Option<String>,
     pub run: CommandList,
+    pub env: Option<HashMap<String, String>>,
 }
 
 #[derive(Debug, Deserialize)]
