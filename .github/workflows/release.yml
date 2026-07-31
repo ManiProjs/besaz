@@ -53,12 +53,15 @@ jobs:
 
           if [[ "${{ matrix.target }}" == *"windows"* ]]; then
             cp target/${{ matrix.target }}/release/besaz.exe dist/
-            cd dist
-            zip besaz-${{ matrix.target }}.zip besaz.exe
+
+            powershell -Command "Compress-Archive -Path dist/besaz.exe -DestinationPath dist/besaz-${{ matrix.target }}.zip"
+
+            rm dist/besaz.exe
           else
             cp target/${{ matrix.target }}/release/besaz dist/
             cd dist
             tar -czf besaz-${{ matrix.target }}.tar.gz besaz
+            rm besaz
           fi
 
       - name: Upload artifact
