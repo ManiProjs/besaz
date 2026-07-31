@@ -1,6 +1,10 @@
 # Besaz
 
-A modern, simple, and extensible build system written in Rust.
+[![CI](https://img.shields.io/github/actions/workflow/status/ManiProjs/besaz/release.yml?style=flat-square)](https://github.com/ManiProjs/besaz/actions)
+[![License](https://img.shields.io/github/license/ManiProjs/besaz?style=flat-square)](LICENSE)
+[![Rust](https://img.shields.io/badge/made%20with-Rust-orange?style=flat-square)](https://www.rust-lang.org)
+
+A modern, simple, and extensible task runner written in Rust.
 
 Besaz lets you define your own project workflows using a `Besazfile`.
 
@@ -8,33 +12,39 @@ Besaz lets you define your own project workflows using a `Besazfile`.
 besaz build
 ```
 
-The `build` command is not built into Besaz. It is a task defined by the user.
+The `build` command is not built into Besaz. It is a task created by you.
 
 ---
 
 ## Features
 
 - 🚀 Simple task-based workflow
-- 📝 `Besazfile` configuration
-- ⚡ Fast execution
+- 📝 Human-readable `Besazfile` configuration
+- ⚡ Fast native execution
 - 🎨 Colored terminal output
 - 🔧 Single or multiple commands per task
-- 💡 User-defined commands
+- 💡 Fully user-defined commands
 - 🦀 Written in Rust
+- 📦 Single portable binary
 
 ---
 
 ## Installation
 
+###
+
 ### From source
 
+Requires Rust and Cargo.
+
 ```bash
-git clone https://github.com/yourusername/besaz.git
+git clone https://github.com/ManiProjs/besaz.git
 cd besaz
+
 cargo install --path .
 ```
 
-Check installation:
+Verify installation:
 
 ```bash
 besaz --version
@@ -44,7 +54,7 @@ besaz --version
 
 ## Quick Start
 
-Create a `Besazfile` in your project:
+Create a file named `Besazfile` in your project:
 
 ```toml
 [tasks.build]
@@ -72,11 +82,11 @@ Running cargo build --release
 
 ## Multiple Commands
 
-A task can execute multiple commands:
+Tasks can contain multiple commands:
 
 ```toml
 [tasks.release]
-description = "Create a release"
+description = "Prepare a release"
 
 run = [
     "cargo fmt",
@@ -103,21 +113,21 @@ in order.
 
 ---
 
-## Task List
+## Listing Tasks
 
-Running Besaz without arguments shows available tasks:
+Run Besaz without arguments:
 
 ```bash
 besaz
 ```
 
-Example:
+Example output:
 
 ```text
 Available tasks:
 
   build     Build the project
-  release   Create a release
+  release   Prepare a release
   test      Run tests
 ```
 
@@ -132,14 +142,14 @@ run = "cargo clean"
 
 ## Configuration
 
-A simple task:
+Simple task:
 
 ```toml
 [tasks.build]
 run = "make"
 ```
 
-A more complex workflow:
+Workflow example:
 
 ```toml
 [tasks.deploy]
@@ -154,20 +164,60 @@ run = [
 
 ---
 
-## Design Philosophy
+## How It Works
 
-Besaz follows a simple idea:
+Besaz keeps the build system simple:
 
 ```
-User defines tasks
++----------------+
+| User defines   |
+| tasks          |
++-------+--------+
         |
         v
-Besaz executes them
++----------------+
+| Besaz executes |
+| commands       |
++----------------+
 ```
 
-Besaz does not force a build system.
+Besaz does not replace your existing tools.
 
-You decide how your project is built.
+You can use:
+
+- Cargo
+- Make
+- CMake
+- Shell scripts
+- Any command-line tool
+
+Besaz simply organizes them into reusable workflows.
+
+---
+
+## Why Besaz?
+
+Many projects need a small automation layer, but full build systems can be unnecessary.
+
+Besaz provides:
+
+- A simple configuration format
+- A consistent command interface
+- A project-local workflow definition
+
+No magic. No hidden behavior.
+
+---
+
+## Supported Platforms
+
+Official releases are available for:
+
+- Linux x86_64
+- Linux ARM64
+- macOS Intel
+- macOS Apple Silicon
+- Windows x86_64
 
 ---
 
@@ -188,9 +238,9 @@ You decide how your project is built.
 
 ## Name
 
-**Besaz (بساز)** means **"build"** or **"make"** in Persian.
+**Besaz (بساز)** means **"build"**, **"create"**, or **"make"** in Persian.
 
-It represents the purpose of the project:
+The idea behind the name:
 
 > Define. Build. Create.
 
