@@ -1,6 +1,6 @@
 [package]
 name = "besaz"
-version = "0.1.0"
+version = "0.1.1"
 description = "A simple and extensible task runner with user-defined workflows written in Rust"
 license = "MIT"
 repository = "https://github.com/ManiProjs/besaz.git"
